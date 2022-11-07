@@ -27,8 +27,10 @@ jobs:
     - name: Install dependencies
       run: |
         go version
-        go get -u golang.org/x/lint/golint
+    #   go get -u golang.org/x/lint/golint
         
     # Run build of the application
+    - name: checkout repo
+      uses: actions/checkout@v2
     - name: Run build
-      run: make all
+      run: make build
