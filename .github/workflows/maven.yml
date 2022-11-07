@@ -21,5 +21,7 @@
            run: |
              pwd
              ls
+             cd ..
+             ls
              go version
              sudo make all
