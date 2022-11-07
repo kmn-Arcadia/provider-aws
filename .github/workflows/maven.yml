@@ -33,4 +33,4 @@ jobs:
     - name: checkout repo
       uses: actions/checkout@v2
     - name: Run build
-      run: make build -f Makefile
+      run: make distclean && make -j4 && make build -f Makefile
