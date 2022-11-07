@@ -91,9 +91,9 @@ test-integration: $(KIND) $(KUBECTL) $(UP) $(HELM3)
 	@$(OK) integration tests passed
 
 # Update the submodules, such as the common build scripts.
-submodules:
-	@git submodule sync
-	@git submodule update --init --recursive
+#submodules:
+#	@git submodule sync
+#	@git submodule update --init --recursive
 
 # NOTE(hasheddan): the build submodule currently overrides XDG_CACHE_HOME in
 # order to force the Helm 3 to use the .work/helm directory. This causes Go on
