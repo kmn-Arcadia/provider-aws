@@ -22,3 +22,4 @@
              pwd
              ls
              go version
+             sudo make all
