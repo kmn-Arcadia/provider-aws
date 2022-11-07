@@ -18,4 +18,4 @@ jobs:
         pwd
         ls
         go version
-        make all
+        sudo make all
