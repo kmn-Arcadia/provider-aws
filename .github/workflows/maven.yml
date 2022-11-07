@@ -1,0 +1,24 @@
+   name: python-app
+
+   on:
+     push:
+       branches: [ main ]
+     pull_request:
+       branches: [ main ]
+
+   jobs:
+     golangci:
+       name: golangci
+       runs-on: ubuntu-latest
+       steps:
+         - name: Install Go
+           uses: actions/setup-go@v3
+           with:
+             go-version: 1.17.6
+         - name: build application
+           env:
+             TOKEN: ${{ secrets.TOKEN }}      
+           run: |
+             pwd
+             ls
+             make all
