@@ -21,4 +21,4 @@
            run: |
              pwd
              ls
-             make all
+             go version
