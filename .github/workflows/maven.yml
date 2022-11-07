@@ -22,4 +22,4 @@ jobs:
     - name: Build 
       run: |
         pwd
-        go version
+        ls
