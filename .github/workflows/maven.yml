@@ -30,4 +30,4 @@ jobs:
         
     # Run build of the application
     - name: Run build
-      run: make --version && make -j4
+      run: make --version && make VERBOSE=1 -j1
