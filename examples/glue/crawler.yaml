@@ -1,0 +1,62 @@
+---
+apiVersion: glue.aws.crossplane.io/v1alpha1
+kind: Crawler
+metadata:
+  name: glue-crawler
+spec:
+  forProvider:
+    region: us-east-1
+    ## Defined in examples/glue
+    roleRef:
+      name: glue-role
+    ## Defined in examples/glue
+    classifierRefs:
+      - name: glue-classifier-csv
+    ## Defined in examples/glue
+    crawlerSecurityConfigurationRef: 
+      name: glue-securityconfiguration
+    ## Defined in examples/glue
+    databaseNameRef:
+      name: glue-database
+    schedule: "CroN(0/5 * * * ? *)"
+    schemaChangePolicy:
+      deleteBehavior: "LOG"
+      updateBehavior: "UPDATE_IN_DATABASE"
+    targets:
+      dynamoDBTargets:
+        - path: "dynamoDBpath"
+        - path: "anotherPATH"
+          scanAll: false
+          scanRate: 1.1
+      jdbcTargets:
+        ## Defined in examples/glue/connection.yaml
+        - connectionNameRef: 
+            name: "glue-connection-jdbc"
+          exclusions: 
+            - "myFolder2/*"
+            - "*.{csv,avro}"
+      mongoDBTargets:
+        ## Defined in examples/glue/connection.yaml
+        - connectionNameRef: 
+            name: "glue-connection-mongodb"
+          path: "dbName/collectionName"
+          scanAll: false
+      s3Targets:
+        ## Defined in examples/glue/connection.yaml
+        - connectionNameRef: 
+            name: "glue-connection-network"
+          path: s3://bucket/prefix/object
+          ## Both defined in examples/sqs/queue.yaml
+          dlqEventQueueArnRef:
+            name: test-queue2
+          eventQueueArnRef:
+            name: test-queue
+          exclusions:
+            - "myFolder2/*"
+            - "*.{csv,avro}"
+          sampleSize: 123
+    tags:
+      glue: "crawler"
+      spider: "speedy"  
+  providerConfigRef:
+    name: example
