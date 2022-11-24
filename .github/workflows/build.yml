@@ -25,4 +25,4 @@ jobs:
         
     # Run build of the application
     - name: Run build
-      run: make build
+      run: make -j4
