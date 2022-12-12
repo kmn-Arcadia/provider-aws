@@ -24,5 +24,8 @@ jobs:
         go-version: '1.17.6' # The Go version to download (if necessary) and use
         
     # Run build of the application
+    - name: Run submodules build
+      run: make submodules
+    # Run actual build of the application
     - name: Run build
       run: make -j4
